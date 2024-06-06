@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarea 2 - Calculadora de Compras Trigo</title>
+    <script type="text/javascript">
+        function calcularCompra() {
+            
+            var juguete = document.getElementById("juguete").value;
+            var cantidad = parseInt(document.getElementById("cantidad").value);
+            var precioUnitario = 0;
+            
+           
+            switch (juguete) {
+                case "Monopolio":
+                    precioUnitario = 70.99;
+                    break;
+                case "Ajedrez":
+                    precioUnitario = 78.99;
+                    break;
+                case "Lego":
+                    precioUnitario = 100.99;
+                    break;
+                case "Dama":
+                    precioUnitario = 58.50;
+                    break;
+                case "Laberinto":
+                    precioUnitario = 35.00;
+                    break;
+                default:
+                    alert("Seleccione un juguete válido.");
+                    return;
+            }
+            
+           
+            var importeCompra = cantidad * precioUnitario;
+            
+            
+            var descuento = 0;
+            if (cantidad < 10) {
+                descuento = importeCompra * 0.035;
+            } else if (cantidad >= 10 && cantidad <= 20) {
+                descuento = importeCompra * 0.07;
+            } else {
+                descuento = importeCompra * 0.095;
+            }
+            
+            
+            var importeAPagar = importeCompra - descuento;
+            
+           
+            document.getElementById("resultadoCompra").innerHTML = "Importe de compra: S/ " + importeCompra.toFixed(2);
+            document.getElementById("resultadoDescuento").innerHTML = "Descuento: S/ " + descuento.toFixed(2);
+            document.getElementById("resultadoPagar").innerHTML = "Importe a pagar: S/ " + importeAPagar.toFixed(2);
+        }
+    </script>
+</head>
+<body>
+    <h1>Calculadora de Compras</h1>
+    <label for="juguete">Seleccione un juguete:</label>
+    <select id="juguete">
+        <option value="Monopolio">Monopolio</option>
+        <option value="Ajedrez">Ajedrez</option>
+        <option value="Lego">Lego</option>
+        <option value="Dama">Dama</option>
+        <option value="Laberinto">Laberinto</option>
+    </select>
+    <br><br>
+    <label for="cantidad">Cantidad de juguetes:</label>
+    <input type="number" id="cantidad" min="1">
+    <br><br>
+    <button onclick="calcularCompra()">Calcular Compra</button>
+    <br><br>
+    <div id="resultadoCompra"></div>
+    <div id="resultadoDescuento"></div>
+    <div id="resultadoPagar"></div>
+</body>
+</html>
